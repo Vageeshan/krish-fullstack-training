@@ -10,6 +10,7 @@ public class DataSource {
 
     private DataSource(){
         // why private? because we're enforcing others to not create an instance of this class
+        // one instance per container
         if (dataSource != null) {
             throw new RuntimeException("We are violating singleton rule");
         }
