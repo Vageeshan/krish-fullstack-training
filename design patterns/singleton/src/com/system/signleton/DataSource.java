@@ -11,7 +11,7 @@ public class DataSource {
     private DataSource(){
         // why private? because we're enforcing others to not create an instance of this class
         if (dataSource != null) {
-            throw new RuntimeException("This is violating our rule");
+            throw new RuntimeException("We are violating singleton rule");
         }
     }
 
