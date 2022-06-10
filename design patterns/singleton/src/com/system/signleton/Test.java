@@ -8,8 +8,9 @@ package com.system.signleton;
 public class Test {
     public static void main(String[] args) {
         DataSource dataSource = DataSource.getInstance();
-        if (dataSource != null){
+        if (dataSource != null) {
             System.out.println(dataSource);
         }
     }
 }
+//EOL
