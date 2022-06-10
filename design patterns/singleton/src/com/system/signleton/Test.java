@@ -7,9 +7,11 @@ package com.system.signleton;
  **/
 public class Test {
     public static void main(String[] args) {
-        DataSource dataSource = DataSource.getInstance();
-        if (dataSource != null) {
+        DataSource dataSource = DataSource.getDataSource();
+        DataSource dataSource1 = DataSource.getDataSource();
+        if (dataSource != null && dataSource1 != null) {
             System.out.println(dataSource);
+            System.out.println(dataSource1);
         }
     }
 }
