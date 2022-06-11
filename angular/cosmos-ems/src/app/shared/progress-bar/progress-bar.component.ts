@@ -10,7 +10,7 @@ export class ProgressBarComponent implements OnInit {
   color: string = '';
   bgClass: string = '';
   @Input() progress: number = 0;
-  @Input() firstName: string = '0';
+  @Input() firstName: string = '';
   @Output() progressClickEvent: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
