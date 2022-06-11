@@ -42,7 +42,10 @@
           <td>{{ employee.lastName}}</td>
           <td>{{ employee.designation}}</td>
           <td>{{ employee.insuranceBalance|currency:"LKR":"symbol":"3.2-2"|lkrFormatter: "RS: "}}</td>
-          <td>{{ employee.rbtProgress}}</td>
+          <td>
+            <em-progress-bar [progress]="employee.rbtProgress"></em-progress-bar>
+
+          </td>
         </tr>
         </tbody>
       </table>

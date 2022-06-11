@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import employees from './mock/employees.json';
+import {Employee} from "./Employees.model";
 
 @Component({
   selector: 'em-employees',
@@ -9,8 +10,8 @@ import employees from './mock/employees.json';
 export class EmployeesComponent implements OnInit {
 
   title: string = "Employee Management System";
-  employees: any[] = employees;
-  filteredEmployees: any[] = employees;
+  employees: Employee[] = employees;
+  filteredEmployees: Employee[] = employees;
   showIcon: boolean = true;
   private _designationFilter: string = '';
 
@@ -32,7 +33,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   filterEmployeesByDesignation = () => {
-    this.filteredEmployees = this.employees.filter(employee => employee.designation.includes(this.designationFilter));
+    this.filteredEmployees = this.employees.filter(employee => employee.designation.toLowerCase().includes(this.designationFilter.toLowerCase()));
   }
 
   ngOnInit(): void {
