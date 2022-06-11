@@ -1,0 +1,51 @@
+<div class="card">
+  <div class="card-header">
+    <h4>{{title}}</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Search Here..." [(ngModel)]="designationFilter">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h6>Filtered by : {{designationFilter}}</h6>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table" *ngIf="employees.length">
+        <thead>
+        <tr>
+          <th>
+            <button class="btn btn-outline-success btn-sm" (click)="toggleIcon()">
+              {{showIcon ? "Hide" : "Show"}}
+            </button>
+          </th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Designation</th>
+          <th>Insurance Balance</th>
+          <th>RBT progress</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let employee of filteredEmployees">
+          <td>
+            <img [src]="employee.icon" *ngIf="showIcon">
+          </td>
+          <td>{{ employee.firstName}}</td>
+          <td>{{ employee.lastName}}</td>
+          <td>{{ employee.designation}}</td>
+          <td>{{ employee.insuranceBalance|currency:"LKR":"symbol":"3.2-2"|lkrFormatter: "RS: "}}</td>
+          <td>{{ employee.rbtProgress}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
