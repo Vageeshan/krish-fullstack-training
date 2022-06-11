@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'em-progress-bar',
@@ -10,6 +10,8 @@ export class ProgressBarComponent implements OnInit {
   color: string = '';
   bgClass: string = '';
   @Input() progress: number = 0;
+  @Input() firstName: string = '0';
+  @Output() progressClickEvent: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
   }
@@ -25,5 +27,9 @@ export class ProgressBarComponent implements OnInit {
     } else {
       this.bgClass = 'bg-success';
     }
+  }
+
+  handleOnClick = () => {
+    this.progressClickEvent.emit(`${this.firstName}'s Progress is ${this.progress} %`);
   }
 }

@@ -13,6 +13,7 @@ export class EmployeesComponent implements OnInit {
   employees: Employee[] = employees;
   filteredEmployees: Employee[] = employees;
   showIcon: boolean = true;
+  message: string = '';
   private _designationFilter: string = '';
 
 
@@ -34,6 +35,10 @@ export class EmployeesComponent implements OnInit {
 
   filterEmployeesByDesignation = () => {
     this.filteredEmployees = this.employees.filter(employee => employee.designation.toLowerCase().includes(this.designationFilter.toLowerCase()));
+  }
+
+  onMessageReceived = (value: string) => {
+    this.message = value;
   }
 
   ngOnInit(): void {

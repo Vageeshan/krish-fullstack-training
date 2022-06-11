@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-header">
     <h4>{{title}}</h4>
+    <hr>
+    {{message}}
   </div>
   <div class="card-body">
     <div class="row">
@@ -43,7 +45,10 @@
           <td>{{ employee.designation}}</td>
           <td>{{ employee.insuranceBalance|currency:"LKR":"symbol":"3.2-2"|lkrFormatter: "RS: "}}</td>
           <td>
-            <em-progress-bar [progress]="employee.rbtProgress"></em-progress-bar>
+            <em-progress-bar [progress]="employee.rbtProgress"
+                             [firstName]="employee.firstName"
+                             (progressClickEvent)="onMessageReceived($event)">
+            </em-progress-bar>
 
           </td>
         </tr>
