@@ -9,6 +9,7 @@ import {ProgressBarComponent} from './shared/progress-bar/progress-bar.component
 import {HomeComponent} from './home/home.component';
 import {RouterModule} from "@angular/router";
 import {CreateEmployeeGuard} from "./employees/create-employee.guard";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import {CreateEmployeeGuard} from "./employees/create-employee.guard";
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: 'employees', component: EmployeesComponent},
-      {path: 'employees/:id', component: EmployeesComponent, canActivate:[CreateEmployeeGuard]},
+      {path: 'employees/:id', component: EmployeesComponent, canActivate: [CreateEmployeeGuard]},
       {path: 'home', component: HomeComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
     ])

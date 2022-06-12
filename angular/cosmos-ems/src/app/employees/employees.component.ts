@@ -1,19 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import employees from './mock/employees.json';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Employee} from "./Employees.model";
+import {EmployeeService} from "./employee.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'em-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss']
 })
-export class EmployeesComponent implements OnInit {
+export class EmployeesComponent implements OnInit, OnDestroy {
 
   title: string = "Employee Management System";
-  employees: Employee[] = employees;
-  filteredEmployees: Employee[] = employees;
+  employees!: Employee[];
+  filteredEmployees!: Employee[];
   showIcon: boolean = true;
   message: string = '';
+  subscriber!: Subscription;
   private _designationFilter: string = '';
 
 
@@ -26,7 +28,21 @@ export class EmployeesComponent implements OnInit {
     this.filterEmployeesByDesignation();
   }
 
-  constructor() {
+  constructor(private employeeService: EmployeeService) {
+  }
+
+  ngOnDestroy(): void {
+    this.subscriber.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.subscriber = this.employeeService.getEmployeeList().subscribe({
+      next: data => {
+        console.log(data);
+        this.filteredEmployees = data;
+        this.employees = this.filteredEmployees;
+      }
+    });
   }
 
   toggleIcon = () => {
@@ -39,8 +55,5 @@ export class EmployeesComponent implements OnInit {
 
   onMessageReceived = (value: string) => {
     this.message = value;
-  }
-
-  ngOnInit(): void {
   }
 }
