@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+      <div class="navbar-nav">
+        <a routerLink="students" routerLinkActive="active" class="nav-item nav-link">Home</a>
+        <a routerLink="create-student" routerLinkActive="active" class="nav-item nav-link">Add Student</a>
+      </div>
+      <div class="navbar-nav">
+        <form class="d-flex">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search">
+            <button type="button" class="btn btn-secondary"><i class="bi-search"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

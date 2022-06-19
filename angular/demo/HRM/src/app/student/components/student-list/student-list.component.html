@@ -1,0 +1,26 @@
+  <h2 align="center">Student List</h2>
+  <table class="table table-dark table-hover">
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.firstName}}</td>
+      <td>{{student.lastName}}</td>
+      <td>
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline-info" (click)="handleEditBtnClick(student.id)">
+            <i class="bi-pencil"></i>
+          </button>
+          <button type="button" class="btn btn-outline-danger" (click)="handleDeleteBtnClick(student.id)">
+            <i class="bi-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>

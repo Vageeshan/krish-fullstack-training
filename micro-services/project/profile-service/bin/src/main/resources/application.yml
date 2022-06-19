@@ -1,0 +1,19 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: profile
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://localhost:9191/oauth/check_token
+    client:
+      client-id: mobile
+      client-secret: pin

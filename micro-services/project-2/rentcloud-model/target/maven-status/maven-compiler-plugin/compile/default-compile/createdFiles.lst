@@ -1,0 +1,4 @@
+com\innovation\rentcloud\model\customer\Loyality.class
+com\innovation\rentcloud\model\rent\Rent.class
+com\innovation\rentcloud\model\vehicle\Vehicle.class
+com\innovation\rentcloud\model\customer\Customer.class

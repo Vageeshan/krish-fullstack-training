@@ -1,0 +1,24 @@
+<h3 align="center">Create Student</h3>
+  <div class="card">
+    <div class="card-body">
+      <form (ngSubmit)="handleSubmit()">
+        <div class="row mb-3">
+          <div class="col-sm-6">
+            <input type="text" class="form-control"
+                   name="firstName"
+                   [(ngModel)]="student.firstName"
+                   placeholder="FirstName">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-6">
+            <input type="text" class="form-control"
+                   name="lastName"
+                   [(ngModel)]="student.lastName"
+                   placeholder="LastName">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">Save</button>
+      </form>
+    </div>
+  </div>
