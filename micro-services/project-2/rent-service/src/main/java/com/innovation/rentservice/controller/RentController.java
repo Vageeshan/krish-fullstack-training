@@ -1,12 +1,13 @@
 package com.innovation.rentservice.controller;
 
-import com.innovation.rentcloud.model.customer.Customer;
 import com.innovation.rentcloud.model.rent.Rent;
 import com.innovation.rentservice.dto.CommonResponse;
 import com.innovation.rentservice.service.RentService;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -19,6 +20,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1")
+@Slf4j
 public class RentController {
 
     private static final String CUSTOMER_SERVICE = "customerService";
@@ -35,17 +37,19 @@ public class RentController {
     @GetMapping(value = "/rent/{id}")
 //    @CircuitBreaker(name = CUSTOMER_SERVICE, fallbackMethod = "getRentDetailsFallBack")
     @Retry(name = CUSTOMER_SERVICE, fallbackMethod = "getRentDetailsFallBack")
-    public CommonResponse<?> getRentDetails(@PathVariable int id, @RequestParam(required = false) String type) {
+    public ResponseEntity<CommonResponse<?>> getRentDetails(@PathVariable int id, @RequestParam(required = false) String type) {
+        log.info("Hit " + attempt++ + " " + new Date());
         if (type == null) {
-            return new CommonResponse<>(rentService.findById(id));
+            return ResponseEntity.ok(new CommonResponse<>(rentService.findById(id)));
+        } else if (type.equals("detailed")) {
+            return ResponseEntity.ok(new CommonResponse<>(rentService.findDetailedResponse(id)));
         } else {
-            System.out.println("Hit "+attempt++ +" "+new Date());
-            return new CommonResponse<>(rentService.findDetailedResponse(id));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CommonResponse<>("Invalid type"));
         }
     }
 
-    private CommonResponse<?> getRentDetailsFallBack(Exception exception) {
-        return new CommonResponse<>("Please try again later");
+    private ResponseEntity<CommonResponse<?>> getRentDetailsFallBack(Exception exception) {
+        return ResponseEntity.ok(new CommonResponse<>("Please try again later : " + (exception.getMessage())));
     }
 
     @PostMapping("/rent")

@@ -1,5 +1,6 @@
 package com.innovation.rentservice.utils;
 
+import com.innovation.rentservice.exception.BadRequestException;
 import com.innovation.rentservice.exception.ErrorDetails;
 import com.innovation.rentservice.exception.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
@@ -43,6 +44,15 @@ public class CentralExceptionHandler extends ResponseEntityExceptionHandler {
                 resourceNotFoundException.getMessage(),
                 webRequest.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<?> badRequestExceptionHandler(BadRequestException badRequestException, WebRequest webRequest) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                new Date(),
+                badRequestException.getMessage(),
+                webRequest.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
