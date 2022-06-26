@@ -10,7 +10,7 @@ const producer = kafka.producer();
 
 const publish = async () => {
   await producer.connect().catch((error) => {
-    console.log("Error occured........ ", error);
+    console.log("Error occurred........ ", error);
   });
 
   for (let i = 0; i < 10; i++) {
