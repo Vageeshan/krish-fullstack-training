@@ -6,4 +6,8 @@ app.get('/wait', async (request, response) => {
     response.send("Job Done......:)");
 });
 
+app.post('/wait', async (request, response) => {
+    response.send("Job Done......:)");
+});
+
 app.listen(8191);
