@@ -3,8 +3,11 @@ package com.krishantha.traning.salesmanager.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.krishantha.traning.salesmanager.model.Employee;
 
+@Repository("myDatabase")
 public class HibernateEmployeeRepositoryImpl implements EmployeeRepository {
 
 @Override
