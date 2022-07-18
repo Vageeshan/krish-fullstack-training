@@ -1,3 +1,5 @@
+package com.krishantha.traning.salesmanager.demo;
+
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
