@@ -1,5 +1,7 @@
 package com.system.waterdrop;
 
+import java.util.Arrays;
+
 /**
  * @Author G.Vageeshan
  * @Version 1.0
@@ -32,8 +34,8 @@ public class WaterDrop {
                         l++;
                     }
 
-                    array_2 = array_1.clone();
-                    array_1 = array_3.clone();
+                    array_2 = Arrays.copyOf(array_1, array_1.length);
+                    array_1 = Arrays.copyOf(array_3, array_3.length);
                     i++;
                 }
                 while (k < 7) {
@@ -86,6 +88,6 @@ public class WaterDrop {
 
     public static void main(String[] args) {
         int[][] array = {{0, 0, 0, 0, 0, 0, 0}, {1, 0, 0, 0, 0, 0, 0}, {0, 0, 1, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {1, 1, 1, 0, 0, 1, 0}, {0, 0, 0, 0, 0, 0, 1}, {0, 0, 0, 0, 0, 0, 0}};
-        waterDrop(array, 5, 1);
+        waterDrop(array, 5, 2);
     }
 }
