@@ -71,8 +71,8 @@ public class WaterDrop {
                         }
                         m++;
                     }
-                    array_2 = array_1.clone();
-                    array_1 = array_3.clone();
+                    array_2 = Arrays.copyOf(array_1, array_1.length);
+                    array_1 = Arrays.copyOf(array_3, array_3.length);
                     i++;
                 }
                 while (k < 7) {
